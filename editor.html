@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BanglaEd | Created by Subinay</title>
+<link rel="icon" href="favicons/favicon.svg" type="image/svg">
+
+<style>
+@font-face{
+font-family:'MajorMonoDisplay';
+src:url('fonts/MajorMonoDisplay.ttf');
+}
+@font-face{
+font-family:'Pacifico';
+src:url('fonts/Pacifico.ttf');
+}
+@font-face{
+font-family:'Montserrat';
+src:url('fonts/Montserrat.ttf');
+}
+
+@font-face{
+font-family:'BalooDa2';
+src:url('fonts/BalooDa2.ttf');
+}
+
+
+body{
+ margin:0;
+ padding:0;
+ overflow:hidden;
+}
+.border{
+ width:100%;
+ height:53px;
+ margin:0;
+ background:linear-gradient(to left,#188CC9,#50e3c2);
+ position:fixed;
+}
+
+.header{
+ width:100%;
+ height:50px;
+ margin:0;
+ padding:15px;
+ box-sizing:border-box;
+ background:white;
+ border-bottom:2px solid linear-gradient(to left,#188CC9,#50e3c2);
+ position:fixed;
+ display:flex;
+ justify-content:space-between;
+}
+
+.logo{
+ height:50px;
+ margin-left:100px;
+ font-family:Pacifico;
+ font-size:25px;
+ margin-top:-15px;
+ background: linear-gradient(to left,#188CC9,#50e3c2);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+}
+
+.tagline{
+ margin-right:20px;
+ font-size:20px;
+ font-family:MajorMonoDisplay;
+ transition:text-shadow 300ms;
+}
+.tagline:hover{
+ text-shadow: 0px 0px 3px #188CC9,0px 0px 5px #50e3c2;
+}
+
+.menu{
+
+}
+.menu a{
+ font-family:Montserrat;
+ font-size:16px;
+ text-decoration:none;
+ margin-left:10px;
+ color:#188CC9;
+ transition:font-size 300ms,letter-spacing 300ms;
+}
+
+.menu a:hover{
+ font-size:18px;
+ letter-spacing:3px;
+}
+
+.active{
+ text-shadow: 1px 5px 10px #50e3c2,1px 2px 10px #50e3c2;
+}
+
+
+.main{
+ width:100%;
+ height:100vh;
+ position:absolute;
+ top:53px;
+ background-color:white;
+}
+
+.button{
+ text-decoration:none;
+ display:block;
+ background-color:transparent;
+ border:2px solid white;
+ padding:10px;
+ color:white;
+ font-size:20px;
+ font-family:Montserrat;
+ font-weight:600;
+ transition-duration:300ms;
+}
+.button:hover{
+ color:#37bcc5;
+ background-color:white;
+}
+.text{
+ height:500px;
+ width:800px;
+ font-family:BalooDa2;
+ font-size:25px;
+ color:#002db3;
+ background:linear-gradient(#a7f1e1,#a4d8f4);
+ outline:none;
+ resize:none;
+ padding:5px;
+ box-sizing:border-box;
+ box-shadow:5px 5px 10px rgba(0,0,0,0.4);
+ border:1px solid black;
+}
+
+.title{
+ width:800px;
+ height:50px;
+ text-align:left;
+ box-sizing:border-box;
+ border:1px solid black;
+ border-bottom:none;
+ margin-top:10px;	
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+
+.text-container{
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+}
+
+
+.label{
+ height:30px;
+ margin-left:15px;
+ padding-left:5px;
+ padding-right:5px;
+ padding-top:5px;
+ font-family:Montserrat;
+ font-size:20px;
+ cursor:pointer;
+ display:inline-block;
+}
+
+.ribbon{
+ font-family:Montserrat;
+ font-size:14px;
+ font-weight:600;
+}
+.ribbon > *{
+ margin-right:20px;
+ cursor:pointer;
+ transition-duration:300ms;
+ text-decoration:none;
+ color:black;
+}
+.ribbon > *:hover{
+ text-shadow:0 0 10px #188CC9;
+}
+</style>
+</head>
+<body>
+<div class="border">
+<div class="header">
+<div class="logo"><a href="#home">BanglaEd&nbsp;</a></div>
+<div class="menu">
+<a href="home.html">Home</a>
+<a href="editor.html"  class="active">Editor</a>
+<a href="about.html">About</a>
+<a href="help.html">Help</a>
+</div>
+<div class="tagline">creAted by subinAy pAndA</div></div>
+</div>
+
+<div class="main">
+<div class="text-container">
+<div class="title" >
+<span class="label" onkeydown="checkEnter(event,this)" onblur="checkFocus(this)">Bengali Document</span>
+<div class="ribbon">
+<span onclick="createNew()">New</span>
+<input type="file" accept="text/*" id="file" onchange="textUpload(event)" style="display:none;">
+<label for="file">Open</label>
+<a id="save" onclick="textDownload()">Download as Text File</a>
+</div>
+</div>
+<textarea id="text" class="text" onkeydown="change(event)" autofocus="true"></textarea>
+</div>
+</div>
+
+</body>
+
+<script>
+box=document.querySelector('.label');
+box.onclick=function(){
+ box.contentEditable="true";
+ box.style.cursor='text';
+ box.focus();
+}
+
+function checkFocus(obj){
+ if (box.innerText.length===0){
+  box.focus();
+ }
+ else{
+  box.contentEditable='false';
+  box.style.cursor='pointer';
+ }
+}
+
+
+
+function checkEnter(event,obj){
+ if (event.key==='Enter'){
+  event.preventDefault();
+  obj.blur();
+ }
+ if (event.key.length===1 && obj.clientWidth>300){
+  obj.blur();
+  alert('Maximum space taken');
+  event.preventDefault();
+ }
+}
+
+area=document.querySelector('.text');
+
+function createNew(){
+ if (confirm('Do you want to download the current text as file')){
+  var link=document.getElementById('save');
+  link.click();
+ }
+ area.value='';
+ box.innerText='Bengali Document';
+ 
+}
+
+function textDownload(){
+var fileBlob=new Blob([area.value],{type:"application/octet-binary"});
+var link=document.getElementById('save');
+var fileName=box.innerText;
+link.setAttribute('href',URL.createObjectURL(fileBlob));
+link.setAttribute('download',fileName+'.txt');
+}
+
+function textUpload(event){
+ var reader=new FileReader();
+ var file=event.target.files[0];
+ reader.readAsText(file);
+ reader.onload=function(){
+  area.value=reader.result;
+ }
+ 
+}
+
+function isvowel(ch){
+ vowelString=' অ আ ই ঈ উ ঊ ঋ ঌ এ ঐ ও ঔা ি ী ু ূ ৃ ৄ ে ৈ ো ৌ ্ ৎ ৗ';
+ for (i in vowelString){
+  if (vowelString[i]===ch){
+   return true;
+  }
+ }
+ return false;
+}
+
+
+//area.addEventListener("keydown", function(event){event.preventDefault()});
+
+function change(event){
+var x=event.key;
+check=1;
+last=isvowel(area.value[area.value.length-1])
+
+if (x==='a' || x==='A'){
+ if (area.value=='' || last){
+  if (event.shiftKey){
+  area.value+='অ';
+  }
+  else if (event.ctrlKey){
+   area.selectionStart=0;
+   area.selectionEnd=area.value.length;
+   console.log('kljsdkfjsl');
+  }
+  else{
+   area.value+='আ';
+  }
+ }
+ else{
+  if (event.ctrlKey){
+   area.selectionStart=0;
+   area.selectionEnd=area.value.length;
+   console.log('kljsdkfjsl');
+  }
+  else{
+   area.value+='া';
+  }
+ } 
+}
+else if(x==='b' || x==='B'){
+ if (event.shiftKey){
+  area.value+='ভ';
+ }
+ else{
+  area.value+='ব';
+ }
+}
+else if(x==='c' || x==='C'){
+ if (event.shiftKey){
+  area.value+='ছ';
+ }
+ else{
+  area.value+='চ';
+ }
+}
+else if(x==='d' || x==='D'){
+ if (event.shiftKey){
+  area.value+='ঢ';
+ }
+ else if(event.ctrlKey){
+  area.value+='ঢ়';
+ }
+ else{
+  area.value+='ড';
+ }
+}
+else if(x==='e' || x==='E'){
+ if (area.value=='' || last){
+  if (event.shiftKey){
+  area.value+='ঐ';
+  }
+  else{
+   area.value+='এ';
+  }
+ }
+ else{
+  if (event.shiftKey){
+   area.value+='ৈ';
+  }
+  else{
+   area.value+='ে';
+  }
+ } 
+}
+else if(x==='f' || x==='F'){
+ if (event.shiftKey){
+  area.value+='ৎ';
+ }
+ else{
+  area.value+='ফ';
+ }
+}
+else if(x==='g' || x==='G'){
+ if (event.shiftKey){
+  area.value+='ঘ';
+ }
+ else if(event.ctrlKey){
+  area.value+='ং';
+ }
+ else{
+  area.value+='গ';
+ }
+}
+else if(x==='h' || x==='H'){
+ if (event.shiftKey){
+  area.value+='ঃ';
+ }
+ else if(event.ctrlKey){
+  area.value+='্';
+ }
+ else{
+  area.value+='হ';
+ }
+}
+else if(x==='i' || x==='I'){
+ if (area.value=='' || last){
+  if (event.shiftKey){
+  area.value+='ঈ';
+  }
+  else{
+   area.value+='ই';
+  }
+ }
+ else{
+  if (event.shiftKey){
+   area.value+='ী';
+  }
+  else{
+   area.value+='ি';
+  }
+ } 
+}
+else if(x==='j' || x==='J'){
+ if (event.shiftKey){
+  area.value+='য';
+ }
+ else if(event.ctrlKey){
+  area.value+='ঝ';
+ }
+ else{
+  area.value+='জ';
+ }
+}
+else if(x==='k' || x==='K'){
+ if (event.shiftKey){
+  area.value+='খ';
+ }
+ else{
+  area.value+='ক';
+ }
+}
+else if(x==='l' || x==='L'){
+ if (event.shiftKey){
+  area.value+='য';
+ }
+ else{
+  area.value+='ল';
+ }
+}
+else if(x==='m' || x==='M'){
+ if (event.shiftKey){
+  area.value+='য';
+ }
+ else{
+  area.value+='ম';
+ }
+}
+else if(x==='n' || x==='N'){
+ if (event.shiftKey){
+  area.value+='ণ';
+ }
+ else{
+  area.value+='ন';
+ }
+}
+else if(x==='o' || x==='O'){
+ if (area.value=='' || last){
+  if (event.shiftKey){
+  area.value+='ঔ';
+  }
+  else{
+   area.value+='ও';
+  }
+ }
+ else{
+  if (event.shiftKey){
+   area.value+='ৌ';
+  }
+  else{
+   area.value+='ো';
+  }
+ } 
+}
+else if(x==='p' || x==='P'){
+ if (event.shiftKey){
+  area.value+='ফ';
+ }
+ else{
+  area.value+='প';
+ }
+}
+else if(x==='q' || x==='Q'){
+ if (event.shiftKey){
+  area.value+='ঁ';
+ }
+ else{
+  area.value+='ক্ষ';
+ }
+}
+else if(x==='r' || x==='R'){
+ if (event.shiftKey){
+  area.value+='ড়';
+ }
+ else{
+  area.value+='র';
+ }
+}
+else if(x==='s' || x==='S'){
+ if (event.shiftKey){
+  area.value+='শ';
+ }
+ else if (event.ctrlKey){
+  area.value+='ষ';
+ }
+ else{
+  area.value+='স';
+ }
+}
+else if(x==='t' || x==='T'){
+ if (event.shiftKey){
+  area.value+='ঠ';
+ }
+ else{
+  area.value+='ট';
+ }
+}
+else if(x==='u' || x==='U'){
+ if (area.value=='' || last){
+  if (event.shiftKey){
+  area.value+='ঊ';
+  }
+  else{
+   area.value+='উ';
+  }
+ }
+ else{
+  if (event.shiftKey){
+   area.value+='ূ';
+  }
+  else{
+   area.value+='ু';
+  }
+ } 
+}
+else if(x==='v' || x==='V'){
+ if (event.shiftKey){
+  area.value+='ধ';
+ }
+ else{
+  area.value+='দ';
+ }
+}
+else if(x==='w' || x==='W'){
+ if (event.shiftKey){
+  area.value+='ঞ';
+ }
+ else{
+  area.value+='ঙ';
+ }
+}
+else if(x==='x' || x==='X'){
+ if (event.shiftKey){
+  area.value+='থ';
+ }
+ else{
+  area.value+='ত';
+ }
+}
+else if(x==='y' || x==='Y'){
+ if (event.shiftKey){
+  area.value+='য';
+ }
+ else{
+  area.value+='য়';
+ }
+}
+else if(x==='z' || x==='Z'){
+ if (area.value.length>0 && !last){
+  area.value+='্য';
+ }
+}
+else if(x==='0'){
+area.value+='০';
+}
+else if(x==='1'){
+area.value+='১';
+}
+else if(x==='2'){
+area.value+='২';
+}
+else if(x==='3'){
+area.value+='৩';
+}
+else if(x==='4'){
+area.value+='৪';
+}
+else if(x==='5'){
+area.value+='৫';
+}
+else if(x==='6'){
+area.value+='৬';
+}
+else if(x==='7'){
+area.value+='৭';
+}
+else if(x==='8'){
+area.value+='৮';
+}
+else if(x==='9'){
+area.value+='৯';
+}
+else if(x==='.'){
+area.value+='৷';
+}
+
+else if(x===' '){
+ area.value+=' ';
+}
+
+else if(area.value.length>1 && x==='F1'){
+ var lst1=area.value[area.value.length-1];
+ var lst2=area.value[area.value.length-2];
+ if (!(isvowel(lst1) || isvowel(lst2))){
+  if (lst1==='ড়'){
+   area.value=area.value.slice(0,area.value.length-2)+'র'+'্'+lst2;
+  }
+  else{
+   area.value=area.value.slice(0,area.value.length-1)+'্'+lst1;
+  }
+ }
+}
+
+else{
+ check=0;
+}
+
+if (check){
+ event.preventDefault();
+} 
+ 
+
+}
+
+</script>
+</html>

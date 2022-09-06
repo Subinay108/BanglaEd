@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BanglaEd | Created by Subinay</title>
+<link rel="icon" href="favicons/favicon.svg" type="image/svg">
+
+<style>
+@font-face{
+font-family:'MajorMonoDisplay';
+src:url('fonts/MajorMonoDisplay.ttf');
+}
+@font-face{
+font-family:'Pacifico';
+src:url('fonts/Pacifico.ttf');
+}
+@font-face{
+font-family:'Montserrat';
+src:url('fonts/Montserrat.ttf');
+}
+@font-face{
+font-family:'BalooDa2';
+src:url('fonts/BalooDa2.ttf');
+}
+
+
+
+body{
+ margin:0;
+ padding:0;
+ overflow:hidden;
+}
+.border{
+ width:100%;
+ height:53px;
+ margin:0;
+ background:linear-gradient(to left,#188CC9,#50e3c2);
+ position:fixed;
+}
+
+.header{
+ width:100%;
+ height:50px;
+ margin:0;
+ padding:15px;
+ box-sizing:border-box;
+ background:white;
+ border-bottom:2px solid linear-gradient(to left,#188CC9,#50e3c2);
+ position:fixed;
+ display:flex;
+ justify-content:space-between;
+}
+
+.logo{
+ height:50px;
+ margin-left:100px;
+ font-family:Pacifico;
+ font-size:25px;
+ margin-top:-15px;
+ background: linear-gradient(to left,#188CC9,#50e3c2);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+}
+
+.tagline{
+ margin-right:20px;
+ font-size:20px;
+ font-family:MajorMonoDisplay;
+ transition:text-shadow 300ms;
+}
+.tagline:hover{
+ text-shadow: 0px 0px 3px #188CC9,0px 0px 5px #50e3c2;
+}
+
+.menu{
+
+}
+.menu a{
+ font-family:Montserrat;
+ font-size:16px;
+ text-decoration:none;
+ margin-left:10px;
+ color:#188CC9;
+ transition:font-size 300ms,letter-spacing 300ms;
+}
+
+.menu a:hover{
+ font-size:18px;
+ letter-spacing:3px;
+}
+
+.active{
+ text-shadow: 1px 5px 10px #50e3c2,1px 2px 10px #50e3c2;
+}
+
+
+.main{
+ width:100%;
+ height:calc(100vh - 53px);
+ position:absolute;
+ top:53px;
+ background-color:white;
+ display:flex;
+ justify-content:center;
+}
+
+.content{
+ width:100%;
+ padding-left:5px;
+ padding-right:5px;
+ font-family:Montserrat;
+ font-size:16px;
+ overflow:auto;
+}
+.swar{
+ width:100%;
+  overflow:auto;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+caption{
+ font-family:BalooDa2;
+ font-size:20px;
+}
+
+th, td {
+    text-align: left;
+    padding: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+
+}
+td:nth-child(even){
+ border-right:1px solid #ddd;
+ font-family:BalooDa2;
+ font-size:20px;
+}
+td:last-child{
+ border:none;
+}
+th:nth-child(even){
+ border-right:1px solid #ddd;
+}
+th:last-child{
+ border:none;
+}
+
+</style>
+</head>
+<body>
+<div class="border">
+<div class="header">
+<div class="logo"><a href="#home">BanglaEd&nbsp;</a></div>
+<div class="menu">
+<a href="home.html" >Home</a>
+<a href="editor.html">Editor</a>
+<a href="about.html">About</a>
+<a href="help.html" class="active">Help</a>
+</div>
+<div class="tagline">creAted by subinAy pAndA</div></div>
+</div>
+
+<div class="main">
+<div class="content">
+<div class="swar">
+<table>
+<caption>স্বর বর্ণ</caption>
+<tr><th>Key</th><th>Symbol</th><th>Key</th><th>Symbol</th><th>Key</th><th>Symbol</th><th>Key</th><th>Symbol</th></tr>
+<tr><td>a</td><td>আ</td><td>Shift + a</td><td>অ</td><td>i</td><td>ই</td><td>Shift + i</td><td>ঈ</td></tr>
+<tr><td>u</td><td>উ</td><td>Shift + u</td><td>ঊ</td><td>Shift + u</td><td>ঋ</td><td>i</td><td>ঌ</td></tr>
+<tr><td>e</td><td>এ</td><td>Shift + e</td><td>ঐ</td><td>o</td><td>ও</td><td>Shift + o</td><td>ঔ</td></tr>
+</table>
+<table>
+<caption>ব্যঞ্জন বর্ণ</caption>
+<tr><th>Key</th><th>Symbol</th><th>Key</th><th>Symbol</th><th>Key</th><th>Symbol</th><th>Key</th><th>Symbol</th></tr>
+<tr><td>k</td><td>ক</td><td>Shift + k</td><td>খ</td><td>g</td><td>গ</td><td>Shift + g</td><td>ঘ</td></tr>
+<tr><td>u</td><td>ঙ</td><td>c</td><td>চ</td><td>Shift + c</td><td>ছ</td><td>j</td><td>জ</td></tr>
+<tr><td>Ctrl + j</td><td>ঝ</td><td>w</td><td>ঞ</td><td>t</td><td>ট</td><td>Shift + t</td><td>ঠ</td></tr>
+<tr><td>d</td><td>ড</td><td>Shift + d</td><td>ঢ</td><td>Shift + n</td><td>ণ</td><td>x</td><td>ত</td></tr>
+<tr><td>Shift + x</td><td>থ</td><td>v</td><td>দ</td><td>Shift + v</td><td>ধ</td><td>n</td><td>ন</td></tr>
+<tr><td>p</td><td>প</td><td>Shift + p</td><td>ফ</td><td>b</td><td>ব</td><td>Shift + b</td><td>ভ</td></tr>
+<tr><td>m</td><td>ম</td><td>Shift + j</td><td>য</td><td>r</td><td>র</td><td>l</td><td>ল</td></tr>
+<tr><td>Shift + s</td><td>শ</td><td>Ctrl + s</td><td>ষ</td><td>a</td><td>স</td><td>h</td><td>হ</td></tr>
+<tr><td>e</td><td>ড়</td><td>Shift + e</td><td>ঢ়</td><td>o</td><td>ৎ</td><td>Shift + o</td><td>ঠ</td></tr>
+<tr><td>e</td><td> ং</td><td>Shift + e</td><td> ঃ</td><td>Shift + q</td><td> ঁ</td>
+
+</table>
+</div>
+<div class="banj"></div>
+<div class="jukto"></div>
+</div>
+</div>
+
+<!--Bengali Ascii Code
+ ঀ ঁ ং ঃ
+ অ আ ই ঈ উ ঊ ঋ ঌ এ ঐ ও ঔ
+ ক খ গ ঘ ঙ চ ছ জ ঝ ঞ ট ঠ ড ঢ ণ ত থ দ ধ ন প ফ ব ভ ম য র ল শ ষ স হ ় ঽ া ি ী ু ূ ৃ ৄ ে ৈ ো ৌ ্ ৎ ৗ ড় ঢ় য় ৠ ৡ ৢ ৣ
+ ০ ১ ২ ৩ ৪ ৫ ৬ ৭ ৮ ৯
+ৱ ৲ ৳ ৴ ৵ ৶ ৷ ৸ ৹ ৺ ৻
+ ਁ  ਂ ਃ -->
+</body>
+</html>
